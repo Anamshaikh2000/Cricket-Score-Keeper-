@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <title>React App</title>
+
+  </head>
+  <body>
+    <div id ="root" style ="text-align: center;"></div>
+    <script type ="text/babel">
+
+        let score =0;
+        let wicket =0;
+        let ballRes = [];
+        let hit =0;
+        let inputRef = React.createRef(); //to get acces of any node in the DOM tree
+
+
+       { /*function addOne() {
+           if (wicket <10){
+           ballRes.push(1);
+            score += 1;
+            rootElement.render(<App />); //this is because we want to reRender the ui everytime when the page is loaded otherwise the score won't be increased.
+            console.log(ballRes);
+        }}
+
+        function addTwo() {
+          if (wicket <10) {
+            ballRes.push(2);
+          score+= 2;
+          rootElement.render(<App />); 
+          console.log(ballRes);
+        }}*/}
+
+        function addScore(num) {
+          hit =num;
+          rootElement.render(<App />); 
+          console.log(hit);
+          }
+
+        function addWicket(){
+          hit = "W";
+          rootElement.render(<App />);
+          
+        }
+        /** We have two type of rendering first we just pass the reference and the 
+          second is passing an inline function **/
+
+        const ScoreButtons = () => (
+          <div class = "button-container">
+                <button class ="score-button" onClick = {() =>addScore(0) }>0</button> 
+              { /* <button onClick = {addOne}>1</button>   
+          <button onClick = {addTwo}>2</button>*/}
+                <button class ="score-button" onClick = {() =>addScore(1) }>1</button> 
+                <button class ="score-button" onClick = {() =>addScore(2) }>2</button> 
+                <button class ="score-button" onClick = {() =>addScore(3) }>3</button>  
+                <button class ="score-button" onClick = {() =>addScore(4) }>4</button>
+                <button class ="score-button" onClick = {() =>addScore(5) }>5</button>
+                <button class ="score-button" onClick = {() =>addScore(6) }>6</button>
+                <button class = "wicket-button" onClick = {addWicket}>Wicket</button>
+                    
+                    </div>
+        )
+
+        const Display = () => (
+          <div>
+          {ballRes.map((res, index) => (
+            <>
+            {index%6===0? <br /> : null}
+            <span key = {index}>{res===0?<strong>.</strong>:res }</span>&nbsp; &nbsp; 
+            </>))}
+          </div>
+        )
+
+        function handleSubmit (event) {
+            event.preventDefault();  //this is used to prevent the auto refreshing of the form 
+            if(hit=="W"){
+              wicket+= 1;
+            }
+            else {
+           score+= hit;
+            }
+            ballRes.unshift(
+             // <span>{hit}{","}{inputRef.current.value}</span> 
+             <>
+             <span class ="spanStyle ">{`${hit}, ${inputRef.current.value}`}</span> 
+             </>
+            );  
+        
+             hit =0;
+             inputRef.current.value =""; //to make the text area empty once submitted
+
+           // console.log(ballRes);
+            console.log(inputRef.current.value);  //current is use so that we can display it
+            rootElement.render( <App />);
+        }
+
+        const Form =() => (
+          <form onSubmit ={handleSubmit}>
+            <input class = "sk" value ={hit}/> <pre>
+            <input class = "sk" ref = {inputRef} placeholder ="Add a Comment"/> </pre> {/*Reference have been created now we can use it anywhere*/} 
+            <button class ="submit-button">Submit</button>
+          </form>
+        )
+        
+     const App = () => (
+            <>
+            <hr />
+            <h1 id ="heading1">Score Keeper</h1>
+            <h2>Score: {score}/{wicket}</h2> 
+            <ScoreButtons />
+            {/*<Display />*/}
+            <br />
+            <Form />
+            <hr />
+            {ballRes.map((res, index) => (
+              <p key ={index}>{res}</p>
+            ))}
+            </>
+            
+         )
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+
+    </script>
+  </body>
+ </html>
