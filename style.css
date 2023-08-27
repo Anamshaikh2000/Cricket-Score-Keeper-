@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #root {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  h1 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  h2 {
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .score-button, .wicket-button {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .score-button:hover, .wicket-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .submit-button {
+    background-color: #2ecc71;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .submit-button:hover {
+    background-color: #27ae60;
+  }
+  
+  .spanStyle {
+    background-color: #f39c12;
+    padding: 3px 6px;
+    margin-right: 5px;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* Add more styles as needed */
+  
